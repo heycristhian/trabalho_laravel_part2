@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css?family=Patrick+Hand&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+    display: inline-block; 
+    margin-left: 20px;
+    text-transform: uppercase;
+}
+
+header a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
+header a:hover {
+    color:  #008b8b;
+    border-bottom: 2px solid #008b8b;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    height: 100px;
+    z-index: 1;
+    background-color: #393939;
+    border-bottom: 2px solid darkgrey;
+    font-family: 'Patrick Hand', cursive;   
+    transition: all 0.4s ease-out;
+}
+
+.max-header {
+    height: 100px;
+}
+
+.min-header {
+    height: 50px;
+}
+
+.logo {
+    grid-area: logo;
+}
+
+.logo img {
+    transition: all 0.4s ease-out;
+}
+
+.nav-bar {
+    grid-area: nav;
+    display: grid;
+    align-content: center;
+}
+
+.nav-bar a {
+    transition: all 0.4s ease-out;
+}
+
+.container {
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 60px;
+    display: grid;
+    grid-template-areas: 
+        "logo ... nav";
+    grid-template-columns: auto 1fr auto;
+    align-content: center;
+}
+
+main section:nth-child(odd) {
+    height: 100vh;
+    background-color: #008b8b;
+    color: white;
+}
+
+main section:nth-child(even) {
+    height: 100vh;
+    background-color: #E0EAF8;
+    color: #008b8b;
+}
+
+main section p {
+    text-align: center;
+    font-size: 50px;
+    width: 100vh;
+    height: 51px;
+}
+
+main section {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    font-family: 'Patrick Hand', cursive;
+}
+
+.ghost {
+    width: 100%;
+    height: 100px;
+    background-color: #008b8b;
+}
+
+.img-logo-min {
+    width: 130px;
+}
+
+.img-logo-max {
+    width: auto;
+}
+
+.menu-flutuante {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+}
+
+.menu-flutuante a .seta {
+    transition: all 0.4s ease-out;
+}
+
+.seta {
+    width: 59px;
+}
+
+.seta-none {
+    width: 59;
+    display: none;
+}
+
+.colections {
+    padding-top: 10px;
+    text-align: center;
+}
+
+.colections img {
+    padding: 10px;
+}
