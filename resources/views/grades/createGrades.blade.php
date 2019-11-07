@@ -76,7 +76,7 @@
                 </select>
                 </div>
             </div>
-            @error('teacher')
+            @error('teacher_id')
             <p class="help is-danger">{{ $message }}</p>
              @enderror
         </div>
@@ -93,7 +93,7 @@
                 </select>
                 </div>
             </div>
-            @error('student')
+            @error('student_id')
             <p class="help is-danger">{{ $message }}</p>
              @enderror
         </div>
@@ -109,7 +109,7 @@
                 </select>
                 </div>
             </div>
-            @error('discipline')
+            @error('discipline_id')
             <p class="help is-danger">{{ $message }}</p>
              @enderror
         </div>
