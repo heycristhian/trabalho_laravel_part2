@@ -9,6 +9,15 @@
     <title>List Discipline</title>
 </head>
 <body>
+    @extends('layouts.main')
+
+    <?php
+      $rota = 'discipline';
+    ?>
+
+    @extends('layouts.add')
+
+
         <nav class="nav-bar">
             <p class="h1">LIST DISCIPLINE</p>
         </nav>

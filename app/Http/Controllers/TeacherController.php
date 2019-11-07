@@ -41,6 +41,14 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'address' => 'required',
+            'cpf' => 'required',
+            'phone' => 'required',
+            'city_id' => 'required'
+        ]);
+
         $teacher = new Teacher;
         $teacher->name = $request->name;
         $teacher->address = $request->address;
@@ -83,6 +91,14 @@ class TeacherController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'address' => 'required',
+            'cpf' => 'required',
+            'phone' => 'required',
+            'city_id' => 'required'
+        ]);
+        
         $teacher = Teacher::findOrFail($id);
         $teacher->name = $request->name;
         $teacher->address = $request->address;

@@ -10,6 +10,7 @@
     <title>Edit City</title>
 </head>
 <body>
+        @extends('layouts.main')
         <nav class="nav-bar">
             <p class="h1">EDIT CITY</p>
         </nav>
@@ -23,6 +24,9 @@
             <div class="control">
                 <input class="input" name="name" type="text" placeholder="Enter name" value="{{ $city->name }}">
             </div>
+            @error('name')
+            <p class="help is-danger">{{ $message }}</p>
+             @enderror
         </div>
 
         <div class="field">
@@ -30,6 +34,9 @@
             <div class="control">
                 <input class="input" name="uf" type="text" placeholder="Enter UF" value="{{ $city->uf }}">
             </div>
+            @error('uf')
+            <p class="help is-danger">{{ $message }}</p>
+             @enderror
         </div>
               
         <div class="field is-grouped">
@@ -37,7 +44,7 @@
                 <button type="submit" class="button is-link">Confirm</button>
             </div>
             <div class="control">
-                    <a href="{{ route('city.index')}}"><button class="button is-link is-light">Cancel</button></a>
+                    <a href="{{ route('city.index')}}" class="button is-link is-light">Cancel</a>
             </div>
         </div>
     </form>

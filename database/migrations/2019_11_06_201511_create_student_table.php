@@ -24,7 +24,7 @@ class CreateStudentTable extends Migration
             $table->timestamps();
 
             $table->foreign('city_id')->references('id')->on('cities');
-            $table->foreign('year_id')->references('id')->on('year');
+            $table->foreign('year_id')->references('id')->on('years');
         });
     }
 

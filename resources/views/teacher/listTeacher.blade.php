@@ -13,6 +13,14 @@ use App\City;
     <title>List Teacher</title>
 </head>
 <body>
+    @extends('layouts.main')
+
+    <?php
+      $rota = 'teacher';
+    ?>
+
+    @extends('layouts.add')
+
         <nav class="nav-bar">
             <p class="h1">LIST TEACHER</p>
         </nav>

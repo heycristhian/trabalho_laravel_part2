@@ -13,7 +13,7 @@ class CreateYearTable extends Migration
      */
     public function up()
     {
-        Schema::create('year', function (Blueprint $table) {
+        Schema::create('years', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('description');
             $table->timestamps();

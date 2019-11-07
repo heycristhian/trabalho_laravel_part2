@@ -19,7 +19,7 @@ class CreateDisciplineyearTable extends Migration
             $table->unsignedBigInteger('discipline_id');
             $table->timestamps();
 
-            $table->foreign('year_id')->references('id')->on('year');
+            $table->foreign('year_id')->references('id')->on('years');
             $table->foreign('discipline_id')->references('id')->on('disciplines');
 
         });

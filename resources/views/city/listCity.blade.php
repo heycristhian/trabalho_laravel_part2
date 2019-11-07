@@ -9,6 +9,14 @@
     <title>List City</title>
 </head>
 <body>
+        @extends('layouts.main')
+
+        <?php
+            $rota = 'city';
+        ?>
+
+        @extends('layouts.add')
+
         <nav class="nav-bar">
             <p class="h1">LIST CITY</p>
         </nav>

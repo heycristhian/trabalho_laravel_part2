@@ -24,8 +24,11 @@
         <div class="field">
             <label class="label">Name</label>
             <div class="control">
-                <input class="input" name="name" type="text" placeholder="Enter name">
+                <input class="input" name="name" type="text" placeholder="Enter name" value="{{ old('name') }}">
             </div>
+            @error('name')
+            <p class="help is-danger">{{ $message }}</p>
+             @enderror
         </div>
 
               
@@ -34,7 +37,7 @@
                 <button type="submit" class="button is-link">Confirm</button>
             </div>
             <div class="control">
-                    <a href="{{ route('home') }}" class="button is-link is-light">Cancel</a>
+                    <a href="{{ route('discipline.index') }}" class="button is-link is-light">Cancel</a>
             </div>
         </div>
     </form>

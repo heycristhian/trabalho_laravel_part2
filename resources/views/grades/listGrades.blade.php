@@ -1,3 +1,13 @@
+<?php
+  use App\Teacher;
+  use App\Student;
+  use App\Discipline;
+
+  $teachers = Teacher::All();
+  $students = Student::All();
+  $disciplines = Discipline::All();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +19,15 @@
     <title>List Grades</title>
 </head>
 <body>
+    @extends('layouts.main')
+
+    <?php
+      $rota = 'grade';
+    ?>
+
+    @extends('layouts.add')
+
+
         <nav class="nav-bar">
             <p class="h1">LIST GRADES</p>
         </nav>
@@ -25,15 +44,36 @@
                   </tr>
                 </thead>
                 <tbody>
+                  @foreach ($grade as $item)
                   <tr>
-                    <th>1</th>
-                    <td>2019</td>
-                    <td>Almir Camolesi</td>
-                    <td>Cristhian Dias</td>
-                    <td>Linguagem da Programação I</td>
-                    <td><a href="editGrades.html"> <button type="button" class="btn btn-warning">Edit</button></a></td>
-                    <td><button type="button" class="btn btn-danger">Remove</button></td>
-                  </tr>                  
+                    <th> {{ $item->bimester }}</th>
+                    <th> {{ $item->year }}</th>
+                    <th>
+                        <?php                            
+                        $teachers = Teacher::find($item->teacher_id);
+                        echo $teachers->name;
+                        ?>
+                    </th>
+                    <th>
+                        <?php                            
+                        $students = Student::find($item->student_id);
+                        echo $students->name;
+                        ?>
+                    </th>
+                    <th>
+                        <?php                            
+                        $disciplines = Discipline::find($item->discipline_id);
+                        echo $disciplines->name;
+                        ?>
+                    </th>
+                    <th><a href="{{ route('grade.edit', $item->id) }}"> <button type="button" class="btn btn-warning">Edit</button></a></td>
+                      <form action="{{route('grade.destroy', $item->id)}}" method="post">
+                          {!! method_field('delete') !!}
+                          {{ csrf_field() }}
+                          <th width="2px"><button type="submit" class="btn btn-danger">Remove</button></td>    
+                      </form>
+                  </tr>        
+                  @endforeach          
                 </tbody>
               </table>
 </body>

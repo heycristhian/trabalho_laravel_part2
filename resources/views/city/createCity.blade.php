@@ -13,10 +13,10 @@
 </style>
 
 <body>
+        @extends('layouts.main')
         <nav class="nav-bar">
             <p class="h1">CREATE CITY</p>
         </nav>
-
         
         <div class="container">
 
@@ -25,15 +25,22 @@
         <div class="field">
             <label class="label">Name</label>
             <div class="control">
-                <input class="input" name="name" type="text" placeholder="Enter name">
+                <input class="input" name="name" type="text" placeholder="Enter name" value="{{ old('name') }}">
             </div>
+            @error('name')
+            <p class="help is-danger">{{ $message }}</p>
+             @enderror
         </div>
+        
 
         <div class="field">
             <label class="label">UF</label>
             <div class="control">
-                <input class="input" name="uf" type="text" placeholder="Enter UF">
+                <input class="input" name="uf" type="text" placeholder="Enter UF" value="{{ old('uf') }}">
             </div>
+            @error('uf')
+            <p class="help is-danger">{{ $message }}</p>
+             @enderror
         </div>
               
         <div class="field is-grouped">
@@ -41,7 +48,7 @@
                 <button type="submit" class="button is-link">Confirm</button>
             </div>
             <div class="control">
-                    <a href="{{ route('home') }}" class="button is-link is-light">Cancel</a>
+                    <a href="{{ route('city.index') }}" class="button is-link is-light">Cancel</a>
             </div>
         </div>
     </form>

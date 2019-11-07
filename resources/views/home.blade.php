@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +9,8 @@
     <title>Home</title>
 </head>
 <body>
+        
+
     <header class="max-header">
         <div class="container">
             <div class="logo">
@@ -21,6 +24,17 @@
                     <li><a href="#discipline">Discipline</a></li>
                     <li><a href="#city">City</a></li>
                     <li><a href="#grades">Grades</a></li>
+                    <li><a href="{{ route('logout') }}"><div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                {{ __('Sair') }}
+                            </a>
+            
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                    </div></a></li>
                 </ul>
             </nav>
         </div>

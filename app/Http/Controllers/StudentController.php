@@ -20,7 +20,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = City::All();
+        $students = Student::All();
         return view('student.listStudent', compact(['students']));
     }
 
@@ -42,6 +42,15 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'address' => 'required',
+            'cpf' => 'required',
+            'phone' => 'required',
+            'city_id' => 'required',
+            'year_id' => 'required'
+        ]);
+
         $student = new Student;
         $student->name = $request->name;
         $student->address = $request->address;
@@ -73,7 +82,7 @@ class StudentController extends Controller
     public function edit($id)
     {
         $student = Student::findOrFail($id);
-        return view('student', compact('student'));
+        return view('student.editStudent', compact('student'));
     }
 
     /**
@@ -85,13 +94,22 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'address' => 'required',
+            'cpf' => 'required',
+            'phone' => 'required',
+            'city_id' => 'required',
+            'year_id' => 'required'
+        ]);
+        
         $student = Student::findOrFail($id);
         $student->name = $request->name;
         $student->address = $request->address;
         $student->cpf = $request->cpf;
         $student->phone = $request->phone;
-        $student->city_id = $request->city_id;
-        $student->year_id = $request->year_id;
+        $student->city_id = $request->city_id[0];
+        $student->year_id = $request->year_id[0];
         $student->save();
         return redirect()->route('student.index');
     }
@@ -105,7 +123,7 @@ class StudentController extends Controller
     public function destroy($id)
     {
         $student = Student::findOrFail($id);
-        $Student->delete();
+        $student->delete();
         return redirect()->route('student.index');
     }
 }

@@ -19,8 +19,8 @@ class GradeController extends Controller
      */
     public function index()
     {
-        $grade = Discipline::All();
-        return view('grade.listGrade', compact(['grade']));
+        $grade = Grade::All();
+        return view('grades.listGrades', compact(['grade']));
     }
 
     /**
@@ -41,11 +41,21 @@ class GradeController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'bimester' => 'required',
+            'year' => 'required',
+            'teacher_id' => 'required',
+            'student_id' => 'required',
+            'grade' => 'required',
+            'discipline_id' => 'required'
+        ]);
+
         $grade = new Grade;
         $grade->bimester = $request->bimester;
         $grade->year = $request->year;        
         $grade->teacher_id = $request->teacher_id;        
         $grade->student_id = $request->student_id;
+        $grade->grade = $request->grade;
         $grade->discipline_id = $request->discipline_id;
         $grade->save();
         return redirect()->route('grade.index');
@@ -71,7 +81,7 @@ class GradeController extends Controller
     public function edit($id)
     {
         $grade = Grade::findOrFail($id);
-        return view('grade.editGrade', compact('grade'));
+        return view('grades.editGrades', compact('grade'));
     }
 
     /**
@@ -83,12 +93,22 @@ class GradeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'bimester' => 'required',
+            'year' => 'required',
+            'teacher_id' => 'required',
+            'student_id' => 'required',
+            'grade' => 'required',
+            'discipline_id' => 'required'
+        ]);
+        
         $grade = Grade::findOrFail($id);
         $grade->bimester = $request->bimester;
         $grade->year = $request->year;        
-        $grade->teacher_id = $request->teacher_id;        
-        $grade->student_id = $request->student_id;
-        $grade->discipline_id = $request->discipline_id;
+        $grade->teacher_id = $request->teacher_id[0];        
+        $grade->student_id = $request->student_id[0];
+        $grade->grade = $request->grade;
+        $grade->discipline_id = $request->discipline_id[0];
         $grade->save();
         return redirect()->route('grade.index');
     }

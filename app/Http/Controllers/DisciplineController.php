@@ -42,6 +42,10 @@ class DisciplineController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+
         $discipline = new Discipline;
         $discipline->name = $request->name;
         $discipline->save();
@@ -80,6 +84,10 @@ class DisciplineController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+
         $discipline = Discipline::findOrFail($id);
         $discipline->name = $request->name;
         $discipline->save();

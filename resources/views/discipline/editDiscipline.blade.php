@@ -26,6 +26,9 @@
                 <div class="control">
                     <input class="input" name="name" type="text" placeholder="Enter name" value="{{ $discipline->name }}">
                 </div>
+                @error('name')
+                <p class="help is-danger">{{ $message }}</p>
+                @enderror
             </div>
                 
             <div class="field is-grouped">

@@ -42,6 +42,11 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'uf' => 'required',
+        ]);
+
         $city = new City;
         $city->name = $request->name;
         $city->uf = $request->uf;
@@ -81,6 +86,12 @@ class CityController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'uf' => 'required',
+        ]);
+
+        
         $city = City::findOrFail($id);
         $city->name = $request->name;
         $city->uf = $request->uf;

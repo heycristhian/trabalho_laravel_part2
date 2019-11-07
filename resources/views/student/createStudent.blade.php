@@ -1,3 +1,11 @@
+<?php
+    use App\City;
+    use App\Year;
+
+    $cities = City::All();
+    $years = Year::All();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +21,8 @@
 </style>
 
 <body>
+
+       
         <nav class="nav-bar">
             <p class="h1">CREATE STUDENT</p>
         </nav>
@@ -23,54 +33,73 @@
         <div class="field">
             <label class="label">Name</label>
             <div class="control">
-                <input class="input" name="name" type="text" placeholder="Enter name">
+                <input class="input" name="name" type="text" placeholder="Enter name" value="{{ old('name') }}">
             </div>
+            @error('name')
+            <p class="help is-danger">{{ $message }}</p>
+             @enderror
         </div>
 
         <div class="field">
             <label class="label">Address</label>
             <div class="control">
-                <input class="input" name="address" type="text" placeholder="Enter address">
+                <input class="input" name="address" type="text" placeholder="Enter address" value="{{ old('address') }}">
             </div>
+            @error('address')
+            <p class="help is-danger">{{ $message }}</p>
+             @enderror
         </div>
 
         <div class="field">
             <label class="label">CPF</label>
             <div class="control">
-                <input class="input" name="cpf" type="text" placeholder="Enter CPF">
+                <input class="input" name="cpf" type="text" placeholder="Enter CPF" value="{{ old('cpf') }}">
             </div>
+            @error('cpf')
+            <p class="help is-danger">{{ $message }}</p>
+             @enderror
         </div>
 
         <div class="field">
             <label class="label">Phone</label>
             <div class="control">
-                <input class="input" name="phone" type="text" placeholder="Enter phone">
+                <input class="input" name="phone" type="number" placeholder="Enter phone" value="{{ old('phone') }}">
             </div>
+            @error('phone')
+            <p class="help is-danger">{{ $message }}</p>
+             @enderror
         </div>
 
         <div class="field">
             <label class="label">City</label>
             <div class="control">
                 <div class="select">
-                <select>
-                    <option>Assis - SP</option>
-                    <option>Cândido Mota - SP</option>
+                <select name="city_id">
+                    @foreach ($cities as $item)
+                        <option value="{{$item->id}}"> {{ $item->name . ' - ' . $item->uf}}</option>
+                    @endforeach
                 </select>
                 </div>
             </div>
+            @error('city')
+            <p class="help is-danger">{{ $message }}</p>
+             @enderror
         </div>
 
         <div class="field">
             <label class="label">Year</label>
             <div class="control">
                 <div class="select">
-                <select>
-                    <option>First</option>
-                    <option>Second</option>
-                    <option>Third</option>
+                <select name="year_id">
+                    @foreach ($years as $item)
+                        <option value="{{$item->id}}"> {{ $item->description}}</option>
+                    @endforeach
                 </select>
                 </div>
             </div>
+            @error('year')
+            <p class="help is-danger">{{ $message }}</p>
+             @enderror
         </div>
               
         <div class="field is-grouped">
@@ -78,7 +107,7 @@
                 <button type="submit" class="button is-link">Confirm</button>
             </div>
             <div class="control">
-                    <a href="../home.html"><button class="button is-link is-light">Cancel</button></a>
+                    <a href="{{ route('student.index') }}" class="button is-link is-light">Cancel</a>
             </div>
         </div>
     </div>

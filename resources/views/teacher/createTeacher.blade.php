@@ -28,29 +28,42 @@
         <div class="field">
             <label class="label">Name</label>
             <div class="control">
-                <input class="input" name="name" type="text" placeholder="Enter name">
+                <input class="input" name="name" type="text" placeholder="Enter name" value="{{ old('name') }}">
             </div>
+            @error('name')
+            <p class="help is-danger">{{ $message }}</p>
+             @enderror
         </div>
+        
 
         <div class="field">
             <label class="label">Address</label>
             <div class="control">
-                <input class="input" name="address" type="text" placeholder="Enter address">
+                <input class="input" name="address" type="text" placeholder="Enter address" value="{{ old('address') }}">
             </div>
+            @error('address')
+            <p class="help is-danger">{{ $message }}</p>
+             @enderror
         </div>
 
         <div class="field">
             <label class="label">CPF</label>
             <div class="control">
-                <input class="input" name="cpf" type="text" placeholder="Enter CPF">
+                <input class="input" name="cpf" type="text" placeholder="Enter CPF" value="{{ old('cpf') }}">
             </div>
+            @error('cpf')
+            <p class="help is-danger">{{ $message }}</p>
+             @enderror
         </div>
 
         <div class="field">
             <label class="label">Phone</label>
             <div class="control">
-                <input class="input" name="phone" type="text" placeholder="Enter phone">
+                <input class="input" name="phone" type="number" placeholder="Enter phone" value="{{ old('phone') }}">
             </div>
+            @error('phone')
+            <p class="help is-danger">{{ $message }}</p>
+             @enderror
         </div>
 
         <div class="field">
@@ -64,14 +77,17 @@
                 </select>
                 </div>
             </div>
+            @error('city')
+            <p class="help is-danger">{{ $message }}</p>
+             @enderror
         </div>
               
         <div class="field is-grouped">
             <div class="control">
-                <button class="button is-link">Confirm</button>
+                <button type="submit" class="button is-link">Confirm</button>
             </div>
             <div class="control">
-                    <a href="{{ route('home') }}" class="button is-link is-light">Cancel</a>
+                    <a href="{{ route('teacher.index') }}" class="button is-link is-light">Cancel</a>
             </div>
         </div>
     </form>

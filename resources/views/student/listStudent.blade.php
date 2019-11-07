@@ -1,3 +1,11 @@
+<?php
+  use App\City;
+  use App\Year;
+
+  $cities = City::All();
+  $years = Year::All();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +17,14 @@
     <title>List Student</title>
 </head>
 <body>
+    @extends('layouts.main')
+
+    <?php
+      $rota = 'student';
+    ?>
+
+    @extends('layouts.add')
+
         <nav class="nav-bar">
             <p class="h1">LIST STUDENT</p>
         </nav>
@@ -27,17 +43,33 @@
                   </tr>
                 </thead>
                 <tbody>
+                  @foreach ($students as $item)
                   <tr>
-                    <th scope="row">1</th>
-                    <td>Cristhian Dias</td>
-                    <td>José Conceição, 26. Inocoop</td>
-                    <td>450.730.708-28</td>
-                    <td>(18) 99741-5398</td>
-                    <td>Assis - SP</td>
-                    <td>Second</td>
-                    <td><a href="{{route('student.edit', 1)}}"> <button type="button" class="btn btn-warning">Edit</button></a></td>
-                    <td><button type="button" class="btn btn-danger">Remove</button></td>
-                  </tr>                  
+                    <th> {{ $item->id }}</th>
+                    <th> {{ $item->name }}</th>
+                    <th> {{ $item->address }}</th>
+                    <th> {{ $item->cpf }}</th>
+                    <th> {{ $item->phone }}</th>
+                    <th> 
+                        <?php                            
+                        $cities = City::find($item->city_id);
+                        echo $cities->name;
+                        ?>
+                    </th>
+                    <th> 
+                        <?php                            
+                        $years = Year::find($item->year_id);
+                        echo $years->description;
+                        ?>
+                    </th>
+                    <th><a href="{{ route('student.edit', $item->id) }}"> <button type="button" class="btn btn-warning">Edit</button></a></td>
+                      <form action="{{route('student.destroy', $item->id)}}" method="post">
+                          {!! method_field('delete') !!}
+                          {{ csrf_field() }}
+                          <th width="2px"><button type="submit" class="btn btn-danger">Remove</button></td>    
+                      </form>
+                  </tr> 
+                  @endforeach                 
                 </tbody>
               </table>
 </body>

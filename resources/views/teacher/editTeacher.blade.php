@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <link rel="stylesheet" href="../../css/style2.css">
-    <title>Create Teacher</title>
+    <title>Edit Teacher</title>
 </head>
 <style>
     
@@ -32,6 +32,9 @@
                 <div class="control">
                     <input class="input" name="name" type="text" placeholder="Enter name" value="{{ $teacher->name }}">
                 </div>
+                @error('name')
+                <p class="help is-danger">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="field">
@@ -39,6 +42,9 @@
                 <div class="control">
                     <input class="input" name="address" type="text" placeholder="Enter address" value="{{ $teacher->address }}">
                 </div>
+                @error('address')
+                <p class="help is-danger">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="field">
@@ -46,13 +52,19 @@
                 <div class="control">
                     <input class="input" name="cpf" type="text" placeholder="Enter CPF" value="{{ $teacher->cpf }} ">
                 </div>
+                @error('cpf')
+                <p class="help is-danger">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="field">
                 <label class="label">Phone</label>
                 <div class="control">
-                    <input class="input" name="phone" type="text" placeholder="Enter phone" value="{{ $teacher->phone }}">
+                    <input class="input" name="phone" type="number" placeholder="Enter phone" value="{{ $teacher->phone }}">
                 </div>
+                @error('phone')
+                <p class="help is-danger">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="field">
@@ -70,6 +82,9 @@
                     </select>
                     </div>
                 </div>
+                @error('city')
+                <p class="help is-danger">{{ $message }}</p>
+                @enderror
             </div>
                 
             <div class="field is-grouped">
